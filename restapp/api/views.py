@@ -287,7 +287,9 @@ def actualizarLiveDataNoRegistrado(reg):
     try:
         rdeviceID = deviceID.objects.get(deviceID=rdeviceID)
         rubicacion = rdeviceID.ubicacion
-        if(datosUserLiveData is None):
+        print("Ubicacion LiveNoRegistrados")
+        print(rubicacion)
+        if(rubicacion is None):
             print("Ubicacion no encontrada en Live Data No Registrados")
             rubicacion = "No registrado"  
     except:
@@ -302,11 +304,11 @@ def actualizarLiveDataNoRegistrado(reg):
             if existenteLiveData is not None:
                 existenteLiveData.delete()
         
-        usersLiveData = LiveData.objects.all()
-        cantidadactualRegistrada = usersLiveData.count()
+        #usersLiveData = LiveData.objects.all()
+        #cantidadactualRegistrada = usersLiveData.count()
 
         nuevoLiveData = LiveData()
-        nuevoLiveData.id = cantidadactualRegistrada+1
+        #nuevoLiveData.id = cantidadactualRegistrada+1
         nuevoLiveData.ubicacion = rubicacion
         nuevoLiveData.cardidHex = rcardID
         nuevoLiveData.nombre = "No registrado"
@@ -320,13 +322,14 @@ def actualizarLiveDataNoRegistrado(reg):
         fecha_y_hora_con_zona_horaria = zona_horaria.localize(fecha_datetime)
         nuevoLiveData.f_ingreso = fecha_y_hora_con_zona_horaria.date()
         nuevoLiveData.h_ingreso = fecha_y_hora_con_zona_horaria.time()
+        print(nuevoLiveData)
         nuevoLiveData.save()
         print("Guardado como ingreso en LiveData exitoso.")
         return
     elif(revento=="Salida"):
         print("Salida en LiveData No Registrado")
         try:
-            datosUserLiveData = LiveData.objects.get(cardid=rcardID)
+            datosUserLiveData = LiveData.objects.get(cardidHex=rcardID)
             if(datosUserLiveData is not None):
                 print("Intenta borrar en LiveData No Registrados")
                 datosUserLiveData.delete()
@@ -376,11 +379,11 @@ def actualizarLiveDataRegistrados(reg):
             if existenteLiveData is not None:
                 existenteLiveData.delete()
         
-        usersLiveData = LiveData.objects.all()
-        cantidadactualRegistrada = usersLiveData.count()
+        #usersLiveData = LiveData.objects.all()
+        #cantidadactualRegistrada = usersLiveData.count()
 
         nuevoLiveData = LiveData()
-        nuevoLiveData.id = cantidadactualRegistrada+1
+        #nuevoLiveData.id = cantidadactualRegistrada+1
         nuevoLiveData.ubicacion = rubicacion
         nuevoLiveData.cardidHex = datosUserLiveData.cardidHex
         nuevoLiveData.nombre = datosUserLiveData.nombre
@@ -400,7 +403,7 @@ def actualizarLiveDataRegistrados(reg):
     elif(revento=="Salida"):
         print("Salida en LiveData")
         try:
-            datosUserLiveData = LiveData.objects.get(cardid=rcardID)
+            datosUserLiveData = LiveData.objects.get(cardidHex=rcardID)
             if(datosUserLiveData is not None):
                 print("Intenta borrar")
                 datosUserLiveData.delete()
@@ -519,30 +522,25 @@ def guardarNoRegistrados(reg):
     print("Inicio evento en No Registrados")
     print(reg)
     try:
+        print("rdeviceID")
+        print(rdeviceID)
         rdeviceID = deviceID.objects.get(deviceID=rdeviceID)
         rubicacion = rdeviceID.ubicacion
+        print("Ubicacion")
+        print(rubicacion)
         if(rdeviceID is None):
             print("Ubicacion no encontrada en No Registrados")
             rubicacion = "Ubicacion No registrada"  
     except:
         print("Error en encontrar la ubicacion del deviceID en No Registrados.")
         rubicacion = "Ubicacion No registrada"   
-
     
-    
-    existenteLiveData = NoRegistrados.objects.filter(cardidHex=rcardID).first()
-    while existenteLiveData is not None: 
-        existenteLiveData = NoRegistrados.objects.filter(cardidHex=rcardID).first()
-        if existenteLiveData is not None:
-            print("Borrando existente")
-            existenteLiveData.delete()
-    
-    usersNoRegistrados = NoRegistrados.objects.all()
-    cantidadactualRegistrada = usersNoRegistrados.count()
-    print("Cantidad actual")
-    print(cantidadactualRegistrada)
+    #usersNoRegistrados = NoRegistrados.objects.all()
+    #cantidadactualRegistrada = usersNoRegistrados.count()
+    #print("Cantidad actual")
+    #print(cantidadactualRegistrada)
     nuevoNoRegistrados = NoRegistrados()
-    nuevoNoRegistrados.id = cantidadactualRegistrada+1
+    #nuevoNoRegistrados.id = cantidadactualRegistrada+1
     nuevoNoRegistrados.ubicacion = rubicacion
     nuevoNoRegistrados.cardidHex = rcardID
     f_evento = rfecha_evento

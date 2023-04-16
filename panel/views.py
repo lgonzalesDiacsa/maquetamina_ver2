@@ -67,6 +67,7 @@ def agregar(request):
         print(request.POST.get('cardid'))
         print(request.POST.get('nombre'))
         print(request.POST.get('apellido'))
+        print(request.POST.get('empresa'))
         print(request.POST.get('cargo'))
         print(request.POST.get('telefono'))
         print(request.POST.get('correo'))
@@ -77,9 +78,10 @@ def agregar(request):
             cantidadactualRegistrada = users.count()
             user = models.PersonalRegistrado()
             user.id = cantidadactualRegistrada+1
-            user.cardid = request.POST.get('cardid')
+            user.cardidHex = request.POST.get('cardid')
             user.nombre = request.POST.get('nombre')
             user.apellido = request.POST.get('apellido')
+            user.empresa = request.POST.get('empresa')
             user.cargo = request.POST.get('cargo')
             user.correo = request.POST.get('correo')
             user.telefono = request.POST.get('telefono')
@@ -96,10 +98,11 @@ def agregar(request):
 @login_required(login_url = 'autenticacion')
 def actualizar(request, codigo):
     if request.method == 'POST':
-        print(request.POST.get('id'))
+        #print(request.POST.get('id'))
         print(request.POST.get('cardid'))
         print(request.POST.get('nombre'))
         print(request.POST.get('apellido'))
+        print(request.POST.get('empresa'))
         print(request.POST.get('cargo'))
         print(request.POST.get('telefono'))
         print(request.POST.get('correo'))
@@ -107,10 +110,11 @@ def actualizar(request, codigo):
         #agregar datos
         if request.POST.get('cardid') and request.POST.get('id') and request.POST.get('nombre') and request.POST.get('apellido') and request.POST.get('telefono') and request.POST.get('correo') and request.POST.get('f_nac'):
             user = models.PersonalRegistrado()
-            user.id = request.POST.get('id')
-            user.cardid = request.POST.get('cardid')
+            #user.id = request.POST.get('id')
+            user.cardidHex = request.POST.get('cardid')
             user.nombre = request.POST.get('nombre')
             user.apellido = request.POST.get('apellido')
+            user.empresa = request.POST.get('empresa')
             user.cargo = request.POST.get('cargo')
             user.correo = request.POST.get('correo')
             user.telefono = request.POST.get('telefono')
@@ -121,7 +125,7 @@ def actualizar(request, codigo):
         datos = { 'r2' : "Debe ingresar todos los campos correctamente"}
         return render(request, "crud_aesadiacsa/actualizar.html", datos)    
     else:
-        datosuser = models.PersonalRegistrado.objects.get(id=codigo)
+        datosuser = models.PersonalRegistrado.objects.get(cardidHex=codigo)
         print("Obtuvo datos de usuario")
         print(datosuser)
         datos = { 'personalregistrado' : datosuser} 
@@ -130,8 +134,7 @@ def actualizar(request, codigo):
 
 @login_required(login_url = 'autenticacion')
 def eliminar(request, codigo):
-
-    tupla = models.PersonalRegistrado.objects.get(id=codigo)
+    tupla = models.PersonalRegistrado.objects.get(cardidHex=codigo)
     tupla.delete()
     return redirect('listar')
 

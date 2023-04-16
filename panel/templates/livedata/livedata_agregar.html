@@ -14,6 +14,17 @@
     <form action="" method="POST">
         {% csrf_token %}
         <div class="form-group row">
+          <label for="ubicacion" class="col-4 col-form-label">Ubicacion</label> 
+          <div class="col-8">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-credit-card"></i>
+              </div> 
+              <input id="ubicacion" name="ubicacion" placeholder="Ubicacion" type="text" required="required" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
           <label for="cardid" class="col-4 col-form-label">Card ID</label> 
           <div class="col-8">
             <div class="input-group">

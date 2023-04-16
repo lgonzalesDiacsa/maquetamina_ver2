@@ -39,7 +39,7 @@
 
             {% for u in livedata %}
                 <tr>
-                <th scope="row">{{ u.id}}</th>
+                <th scope="row">{{ forloop.counter }}</th>
                 <td>{{ u.ubicacion}}</td>
                 <td>{{ u.cardidHex}}</td>
                 <td>{{ u.nombre}}</td>

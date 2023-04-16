@@ -7,15 +7,15 @@
     <form action="livedata_eliminar" method="POST">
         {% csrf_token %}
         <div class="form-group row">
-            <label for="id" class="col-4 col-form-label">ID Personal Livedata</label> 
+            <label for="id" class="col-4 col-form-label">CardID Personal Livedata</label> 
             <div class="col-8">
             <div class="input-group">
                 <div class="input-group-addon">
                 <i class="fa fa-list-ol"></i>
                 </div> 
-                <select id="id" name="id">
+                <select id="cardidHex" name="cardidHex">
                 {% for u in livedata %}
-                    <option value="{{u.id}}">{{u.id}}</option>    
+                    <option value="{{u.cardidHex}}">{{u.cardidHex}}</option>    
                 {% endfor %}
                 </select>
             </div>

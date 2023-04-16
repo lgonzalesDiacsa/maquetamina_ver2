@@ -6,7 +6,7 @@
     
     <form action="actualizar" method="POST">
         {% csrf_token %}
-        <div class="form-group row">
+        <!-- <div class="form-group row">
             <label for="id" class="col-4 col-form-label">ID Usuario</label> 
             <div class="col-8">
               <div class="input-group">
@@ -20,7 +20,7 @@
                 </select>
               </div>
             </div>
-        </div>
+        </div> -->
         <div class="form-group row">
           <label for="cardid" class="col-4 col-form-label">Card ID</label> 
           <div class="col-8">
@@ -28,7 +28,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-credit-card"></i>
               </div> 
-              <input id="cardidHex" name="cardidHex" placeholder="Card Id" type="number" required="required" class="form-control" value="{{personalregistrado.cardidHex}}">
+              <input id="cardidHex" name="cardidHex" placeholder="Card Id" type="text" required="required" class="form-control" value="{{personalregistrado.cardidHex}}">
             </div>
           </div>
         </div>        

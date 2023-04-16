@@ -15,6 +15,7 @@
           <thead>
             <tr>
               <th scope="col" data-bs-column-filter>#</th>
+              <th scope="col" data-bs-column-filter>Ubicacion</th>
               <th scope="col" data-bs-column-filter>CardID</th>
               <th scope="col" data-bs-column-filter>Fecha de Evento</th>
               <th scope="col" data-bs-column-filter>Hora de Evento</th>
@@ -25,7 +26,8 @@
 
             {% for u in noregistrados %}
                 <tr>
-                <th scope="row">{{ u.id}}</th>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ u.ubicacion}}</td>
                 <td>{{ u.cardidHex}}</td>
                 <td>{{ u.f_evento}}</td>
                 <td>{{ u.h_evento}}</td>

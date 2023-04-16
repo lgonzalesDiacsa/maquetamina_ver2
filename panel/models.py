@@ -4,7 +4,7 @@ from django.db import models
 
 class PersonalRegistrado(models.Model):
     id = models.IntegerField(primary_key=True)
-    cardidHex = models.CharField(max_length=8, null=True)
+    cardidHex = models.CharField(max_length=8, null=False)
     nombre = models.CharField(max_length=50, null=False)
     apellido = models.CharField(max_length=50, null=False)
     empresa = models.CharField(max_length=50, null=True)
@@ -22,8 +22,8 @@ class PersonalRegistrado(models.Model):
 
 class LiveData(models.Model):
     id = models.IntegerField(primary_key=True)
-    ubicacion = models.CharField(max_length=50, null=True)
-    cardidHex = models.CharField(max_length=8, null=True)
+    ubicacion = models.CharField( max_length=50, null=True)
+    cardidHex = models.CharField(max_length=8, null=False)
     nombre = models.CharField(max_length=50, null=True)
     apellido = models.CharField(max_length=50, null=True)
     empresa = models.CharField(max_length=50, null=True)
@@ -40,7 +40,7 @@ class LiveData(models.Model):
 class Historial(models.Model):
     id = models.BigAutoField(primary_key=True)
     ubicacion = models.CharField(max_length=50, null=True)
-    cardidHex = models.CharField(max_length=8, null=True)
+    cardidHex = models.CharField(max_length=8, null=False)
     nombre = models.CharField(max_length=50, null=True)
     apellido = models.CharField(max_length=50, null=True)
     empresa = models.CharField(max_length=50, null=True)

@@ -23,6 +23,7 @@
           <thead>
             <tr>
               <th scope="col" data-bs-column-filter>#</th>
+              <th scope="col" data-bs-column-filter>Ubicacion</th>
               <th scope="col" data-bs-column-filter>CardID</th>
               <th scope="col" data-bs-column-filter>Nombre</th>
               <th scope="col" data-bs-column-filter>Apellido</th>
@@ -37,6 +38,7 @@
             {% for u in marcacion %}
                 <tr>
                 <th scope="row">{{ u.id}}</th>
+                <td>{{ u.ubicacion}}</td>
                 <td>{{ u.cardidHex}}</td>
                 <td>{{ u.nombre}}</td>
                 <td>{{ u.apellido}}</td>
